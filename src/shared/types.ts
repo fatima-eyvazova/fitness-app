@@ -1,8 +1,11 @@
+import SignUp from "@/components/SignUp/SignUp";
+
 export enum SelectedPage {
     Home = 'home',
     Benefits = 'benefits',
     OurClasses = 'ourClasses',
-    ContactUs = 'contactUs'
+    ContactUs = 'contactUs',
+    SignUp = 'contactUs'
 }
 
 export interface BenefitType {

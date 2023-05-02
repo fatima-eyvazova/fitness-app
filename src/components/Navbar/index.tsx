@@ -1,4 +1,5 @@
 import { useState, Dispatch, SetStateAction } from "react"
+import { Link as RouterLink } from 'react-router-dom'
 import Link from "./Link"
 import Logo from "@/assets/Logo.png"
 import { RxHamburgerMenu } from "react-icons/rx"
@@ -6,6 +7,7 @@ import { IoMdClose } from "react-icons/io"
 import { SelectedPage } from "@/shared/types"
 import useMediaQuery from "@/hooks/useMediaQuery"
 import ActionButton from "@/shared/ActionButton"
+import { ROUTES } from "@/router/routeNames"
 type Props = {
     isTopOfPage: boolean
     selectedPage: string,
@@ -40,8 +42,8 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }: Props) => {
                                     setSelectedPage={setSelectedPage} />
                             </div>
                             <div className={`${flexBetween} gap-8`}>
-                                <p>Sign In</p>
-                                <ActionButton setSelectedPage={setSelectedPage}>Sign Up</ActionButton>
+                                <RouterLink to={ROUTES.signin}>Sign In</RouterLink>
+                                <RouterLink to={ROUTES.signUp} className="rounded-md bg-secondary-500 px-7 py-2 hover:bg-primary-500 hover:text-white">Sign Up</RouterLink>
                             </div>
                         </div>
                     ) : (

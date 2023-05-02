@@ -5,12 +5,12 @@ import gymGirl from "@/assets/gymGirlll.jpeg";
 import HeadingText from "@/shared/HeadingText";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
-
 type Props = {
-    setSelectedPage: (value: SelectedPage) => void;
+    setSelectedPage: (value: SelectedPage) => void,
+    password: string,
     email: string,
-    name: string,
-    message: string
+    name: string
+
 };
 
 const ContactUs = ({ setSelectedPage }: Props) => {
@@ -20,9 +20,13 @@ const ContactUs = ({ setSelectedPage }: Props) => {
             .matches(
                 /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
                 "Email is invalid"
-            )
-    })
+            ),
 
+        password: yup.string()
+            .required('Password is required')
+            .min(6, 'Password must be at least 6 characters')
+            .max(40, 'Password must not exceed 40 characters'),
+    })
     const inputStyle = `mb-5 w-full rounded-lg bg-primary-300
   px-5 py-3 placeholder-white`;
 
@@ -99,41 +103,31 @@ const ContactUs = ({ setSelectedPage }: Props) => {
                                 })}
                             />
                             {errors.name && (
-                                <p className="mt-1  text-primary-500">
+                                <p className="mt-1 text-primary-500">
                                     {errors.name.type === "required" && "This field is required."}
                                     {errors.name.type === "maxLength" &&
                                         "Max length is 100 char."}
                                 </p>
                             )}
 
-                            <input placeholder="EMAIL"
-                                // className={inputStyle}
-                                type="email"
-                                {...register('email')}
-                                className={`${inputStyle}
-                             form-control ${errors.email ? 'is-invalid' : ''}`}
-
+                            <input
+                                className={`${inputStyle} form-control ${errors.password ? 'is-invalid' : ''}`}
+                                type="text"
+                                placeholder="EMAIL"
+                                {...register("email")}
                             />
                             <div className="invalid-feedback text-primary-500">{errors.email?.message}</div>
 
-                            <textarea
-                                className={inputStyle}
-                                placeholder="MESSAGE"
-                                rows={4}
-                                cols={50}
-                                {...register("message", {
-                                    required: true,
-                                    maxLength: 2000,
-                                })}
+
+
+                            <input placeholder="PASSWORD"
+                                type="password"
+                                {...register('password')}
+                                className={`${inputStyle} form-control ${errors.password ? 'is-invalid' : ''}`}
+                            // className={inputStyle}
+
                             />
-                            {errors.message && (
-                                <p className="mt-1 text-primary-500">
-                                    {errors.message.type === "required" &&
-                                        "This field is required."}
-                                    {errors.message.type === "maxLength" &&
-                                        "Max length is 2000 char."}
-                                </p>
-                            )}
+                            <div className="invalid-feedback text-primary-500">{errors.password?.message}</div>
 
                             <button
                                 type="submit"
