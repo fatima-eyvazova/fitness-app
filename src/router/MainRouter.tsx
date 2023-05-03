@@ -4,9 +4,8 @@ import App from "@/App";
 import SignUp from "@/components/SignUp/SignUp";
 import SignIn from "@/components/SignIn/SignIn";
 
-type Props = {}
 
-const MainRouter = (props: Props) => {
+const MainRouter = () => {
     return (
         <Routes>
             <Route path={ROUTES.main} element={<App />} />

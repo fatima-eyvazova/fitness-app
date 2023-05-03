@@ -6,10 +6,10 @@ import HeadingText from "@/shared/HeadingText";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 type Props = {
-    setSelectedPage: (value: SelectedPage) => void,
-    password: string,
-    email: string,
-    name: string
+    setSelectedPage?: (value: SelectedPage) => void,
+    password?: string,
+    email?: string,
+    name?: string
 
 };
 
@@ -50,7 +50,7 @@ const ContactUs = ({ setSelectedPage }: Props) => {
     return (
         <section id="contactus" className="mx-auto w-5/6 pt-24 pb-32">
             <motion.div
-                onViewportEnter={() => setSelectedPage(SelectedPage.ContactUs)}
+            //onViewportEnter={() => setSelectedPage(SelectedPage.ContactUs)}
             >
                 {/* HEADER */}
                 <motion.div

@@ -8,9 +8,9 @@ import * as yup from "yup";
 
 type Props = {
     setSelectedPage: (value: SelectedPage) => void;
-    email: string,
-    name: string,
-    message: string
+    email?: string,
+    name?: string,
+    message?: string
 };
 
 const ContactUs = ({ setSelectedPage }: Props) => {
